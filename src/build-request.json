@@ -1,115 +1,130 @@
 {
   "kind": "build_request",
-  "title": "Build AI health assistant with routine tracking and chat",
+  "title": "Professional UI redesign with refined typography and layouts",
   "projectName": "Health Guardian",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-1",
-      "text": "Implement Internet Identity authentication integration allowing users to securely log in and maintain their health data",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-1",
-          "msg-4"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Users can log in using Internet Identity",
-        "User session persists across page refreshes",
-        "Health data is tied to authenticated user identity"
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Create a daily health routine tracking system where users can log and manage their daily health activities (exercise, meals, water intake, sleep, medications)",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-1",
-          "msg-4"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Users can add new routine entries with timestamp",
-        "Users can view their routine history",
-        "Users can edit or delete existing entries",
-        "Data persists in backend storage"
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Build an AI chat interface for health guidance where users can ask health-related questions and receive text-based advice",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-1",
-          "msg-4"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Chat interface displays conversation history",
-        "Users can send text messages and receive AI responses",
-        "AI provides general health guidance based on user queries",
-        "Chat history is saved per user"
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Implement an emergency contacts management feature where users can store and display emergency contact information (name, relationship, phone number)",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-1",
-          "msg-4"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Users can add multiple emergency contacts",
-        "Users can view all saved emergency contacts",
-        "Users can edit or remove contacts",
-        "Emergency contacts are prominently displayed and easily accessible"
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Design a clean, health-focused user interface with a calming color palette (soft greens, whites, light blues) and clear typography that promotes wellness and accessibility",
+      "id": "REQ-6",
+      "text": "Refine the typography system to use a professional font pairing with clear hierarchy: use a modern sans-serif for headings (weight 600-700) and body text (weight 400-500), ensuring all text is easily readable with appropriate line-heights and letter-spacing",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1",
-          "msg-4"
+          "msg-user-make-professional"
         ]
       },
       "acceptanceCriteria": [
-        "Interface uses a cohesive health-themed color scheme",
-        "Navigation is intuitive with clear section labels",
-        "Layout is responsive and accessible",
-        "Visual design promotes a sense of calm and trust"
+        "Headings use consistent font weights (600-700) with clear size hierarchy",
+        "Body text uses readable weights (400-500) with optimal line-height for readability",
+        "Letter-spacing is adjusted for professional appearance"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Redesign the Layout component header and hero section with a professional aesthetic: replace casual styling with a clean, minimalist design featuring subtle shadows, refined spacing, and a more sophisticated layout structure",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-make-professional"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Header uses professional spacing and subtle elevation effects",
+        "Hero section has a refined, business-appropriate visual treatment",
+        "Overall layout conveys trustworthiness and credibility"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Update the EmergencyContacts component to use a more professional presentation: replace the prominent alert styling with a clean card-based layout, use subtle borders and shadows, and refine the contact list to look more like a professional directory",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-make-professional"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Emergency contacts displayed in professional card format",
+        "Alert styling replaced with subtle, business-appropriate visual cues",
+        "Contact information presented in a clear, directory-style format"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Refine the HealthRoutineTracker component with professional form styling: use clean input fields with subtle borders, organized sections with clear labels, and a polished submission button with appropriate hover states",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-make-professional"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Form inputs have professional styling with clear focus states",
+        "Section organization uses clear visual hierarchy",
+        "Submit button has polished appearance with smooth interactions"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Update the HealthChatInterface component with a professional chat design: use a clean message bubble design, refined color contrast, organized layout with clear sender distinction, and professional spacing between messages",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-make-professional"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Chat messages use professional bubble design with appropriate padding",
+        "User and AI messages are clearly distinguished with professional styling",
+        "Message spacing and layout convey a polished, business-appropriate interface"
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Refine the color palette to maintain the health-focused theme while adding professional polish: adjust the existing OKLCH colors to use more sophisticated tones, reduce saturation slightly for a mature look, and ensure strong contrast ratios for accessibility",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-make-professional"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Color palette maintains health-focused calming effect while looking more professional",
+        "All text maintains WCAG AA contrast ratios or better",
+        "Color scheme conveys trustworthiness and credibility"
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Update button and interactive element styling across all components to use consistent professional design: rounded corners with subtle radius, refined hover and active states, clear focus indicators, and appropriate elevation changes",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-make-professional"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All buttons use consistent professional styling",
+        "Hover states provide clear visual feedback",
+        "Focus indicators meet accessibility standards",
+        "Interactive elements convey quality and polish"
       ]
     }
   ],
   "constraints": [
-    "Do not implement voice recognition features",
-    "Do not implement email sending functionality",
-    "Do not implement real-time SMS or emergency alert systems",
-    "Do not implement GPS location services",
-    "Do not implement MRI or X-ray scanning capabilities",
-    "Do not integrate with external emergency service APIs"
+    "Do not modify immutable frontend paths: useInternetIdentity.ts, useInternetIdentity.tsx, useActor.ts, main.tsx, and components/ui directory",
+    "Maintain the existing health-focused theme direction while adding professional polish",
+    "Preserve all existing functionality while updating visual design",
+    "Keep the calming color palette foundation but refine it for professional appearance"
   ],
   "nonGoals": [
-    "Real-time emergency service notifications",
-    "Medical image analysis",
-    "Integration with external health APIs or services",
-    "Voice-based interactions",
-    "Automated emergency contact notifications"
+    "Adding new features or functionality beyond visual refinement",
+    "Changing the application's core user flows or navigation structure",
+    "Modifying backend logic or data structures",
+    "Replacing the entire color scheme with non-health-focused colors"
   ],
   "imageRequirements": {
-    "required": [
-      "Health and wellness hero banner with calming medical theme (hero-health.dim_1200x600.png)",
-      "Medical assistance icon for chat feature (chat-icon.dim_128x128.png)",
-      "Emergency contact icon in red cross style (emergency-icon.dim_128x128.png)"
-    ],
+    "required": [],
     "edits": []
   }
 }

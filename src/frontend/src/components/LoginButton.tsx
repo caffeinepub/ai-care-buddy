@@ -33,7 +33,7 @@ export default function LoginButton() {
       disabled={disabled}
       size="lg"
       variant={isAuthenticated ? 'outline' : 'default'}
-      className="min-w-[140px]"
+      className="min-w-[140px] h-11 rounded-xl shadow-soft hover:shadow-md transition-all duration-200 font-medium"
     >
       {loginStatus === 'logging-in' ? (
         <>
@@ -54,4 +54,3 @@ export default function LoginButton() {
     </Button>
   );
 }
-

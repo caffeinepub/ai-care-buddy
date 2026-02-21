@@ -18,6 +18,22 @@ export default {
             fontFamily: {
                 sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
             },
+            fontSize: {
+                xs: ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.01em' }],
+                sm: ['0.875rem', { lineHeight: '1.6', letterSpacing: '0' }],
+                base: ['1rem', { lineHeight: '1.7', letterSpacing: '0' }],
+                lg: ['1.125rem', { lineHeight: '1.7', letterSpacing: '-0.01em' }],
+                xl: ['1.25rem', { lineHeight: '1.6', letterSpacing: '-0.01em' }],
+                '2xl': ['1.5rem', { lineHeight: '1.4', letterSpacing: '-0.02em' }],
+                '3xl': ['1.875rem', { lineHeight: '1.3', letterSpacing: '-0.02em' }],
+                '4xl': ['2.25rem', { lineHeight: '1.2', letterSpacing: '-0.03em' }],
+            },
+            letterSpacing: {
+                tighter: '-0.03em',
+                tight: '-0.02em',
+                normal: '0',
+                wide: '0.01em',
+            },
             colors: {
                 border: 'oklch(var(--border))',
                 input: 'oklch(var(--input))',
@@ -63,12 +79,14 @@ export default {
             borderRadius: {
                 lg: 'var(--radius)',
                 md: 'calc(var(--radius) - 2px)',
-                sm: 'calc(var(--radius) - 4px)'
+                sm: 'calc(var(--radius) - 4px)',
+                xl: 'calc(var(--radius) + 4px)',
             },
             boxShadow: {
                 xs: '0 1px 2px 0 rgba(0,0,0,0.05)',
                 soft: '0 2px 8px -2px rgba(0,0,0,0.08)',
-                medium: '0 4px 16px -4px rgba(0,0,0,0.12)'
+                medium: '0 4px 16px -4px rgba(0,0,0,0.12)',
+                'professional': '0 1px 3px 0 rgba(0,0,0,0.08), 0 1px 2px 0 rgba(0,0,0,0.04)',
             },
             keyframes: {
                 'accordion-down': {
@@ -88,4 +106,3 @@ export default {
     },
     plugins: [typography, containerQueries, animate]
 };
-

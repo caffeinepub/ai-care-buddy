@@ -1,13 +1,15 @@
 # Specification
 
 ## Summary
-**Goal:** Build an AI-powered health assistant application with Internet Identity authentication, daily routine tracking, AI chat guidance, and emergency contact management.
+**Goal:** Redesign the Health Guardian application with a professional, polished UI while maintaining the health-focused theme.
 
 **Planned changes:**
-- Implement Internet Identity authentication for secure user login and session management
-- Create daily health routine tracking system for logging exercise, meals, water intake, sleep, and medications
-- Build AI chat interface for health-related questions and guidance with conversation history
-- Add emergency contacts management feature for storing contact information (name, relationship, phone number)
-- Design clean health-focused UI with calming color palette (soft greens, whites, light blues)
+- Refine typography system with professional font pairing and clear hierarchy
+- Redesign header and hero section with clean, minimalist aesthetics
+- Update EmergencyContacts component to use professional card-based layout
+- Refine HealthRoutineTracker component with polished form styling
+- Update HealthChatInterface component with professional chat design
+- Refine color palette to more sophisticated, mature tones while maintaining health focus
+- Update all buttons and interactive elements with consistent professional styling
 
-**User-visible outcome:** Users can securely log in, track their daily health activities, chat with an AI assistant for health guidance, and manage emergency contacts—all within a calming, wellness-focused interface.
+**User-visible outcome:** Users will experience a more professional, trustworthy interface with refined typography, sophisticated color palette, polished components, and consistent professional styling throughout the application.

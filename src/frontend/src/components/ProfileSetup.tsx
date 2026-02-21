@@ -19,20 +19,20 @@ export default function ProfileSetup() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-background px-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center space-y-2">
-          <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-            <User className="w-6 h-6 text-primary" />
+      <Card className="w-full max-w-md shadow-medium">
+        <CardHeader className="text-center space-y-3 pb-6">
+          <div className="mx-auto w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-2 shadow-soft">
+            <User className="w-7 h-7 text-primary" />
           </div>
-          <CardTitle className="text-2xl">Welcome to Health Guardian</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-2xl font-semibold tracking-tight">Welcome to Health Guardian</CardTitle>
+          <CardDescription className="font-normal text-base leading-relaxed">
             Let's get started by setting up your profile. What should we call you?
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">Your Name</Label>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="space-y-2.5">
+              <Label htmlFor="name" className="font-medium text-sm">Your Name</Label>
               <Input
                 id="name"
                 type="text"
@@ -42,12 +42,17 @@ export default function ProfileSetup() {
                 disabled={isPending}
                 required
                 autoFocus
+                className="h-12 border-input focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
               />
             </div>
-            <Button type="submit" className="w-full" disabled={isPending || !name.trim()}>
+            <Button 
+              type="submit" 
+              className="w-full h-12 rounded-xl shadow-soft hover:shadow-md transition-all duration-200 font-medium text-base" 
+              disabled={isPending || !name.trim()}
+            >
               {isPending ? (
                 <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                   Setting up...
                 </>
               ) : (
@@ -60,4 +65,3 @@ export default function ProfileSetup() {
     </div>
   );
 }
-

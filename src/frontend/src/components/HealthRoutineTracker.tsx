@@ -7,8 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
-import { Activity, Droplet, Moon, Pill, Utensils, Plus, Trash2, Loader2 } from 'lucide-react';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Activity, Droplet, Moon, Pill, Utensils, Plus, Trash2, Loader2, CheckCircle2 } from 'lucide-react';
 
 export default function HealthRoutineTracker() {
   const { identity } = useInternetIdentity();
@@ -25,29 +24,17 @@ export default function HealthRoutineTracker() {
     { name: '', dosage: '', time: '' }
   ]);
 
-  const handleAddMeal = () => {
-    setMeals([...meals, '']);
-  };
-
-  const handleRemoveMeal = (index: number) => {
-    setMeals(meals.filter((_, i) => i !== index));
-  };
-
-  const handleMealChange = (index: number, value: string) => {
+  const addMeal = () => setMeals([...meals, '']);
+  const removeMeal = (index: number) => setMeals(meals.filter((_, i) => i !== index));
+  const updateMeal = (index: number, value: string) => {
     const newMeals = [...meals];
     newMeals[index] = value;
     setMeals(newMeals);
   };
 
-  const handleAddMedication = () => {
-    setMedications([...medications, { name: '', dosage: '', time: '' }]);
-  };
-
-  const handleRemoveMedication = (index: number) => {
-    setMedications(medications.filter((_, i) => i !== index));
-  };
-
-  const handleMedicationChange = (index: number, field: 'name' | 'dosage' | 'time', value: string) => {
+  const addMedication = () => setMedications([...medications, { name: '', dosage: '', time: '' }]);
+  const removeMedication = (index: number) => setMedications(medications.filter((_, i) => i !== index));
+  const updateMedication = (index: number, field: 'name' | 'dosage' | 'time', value: string) => {
     const newMedications = [...medications];
     newMedications[index][field] = value;
     setMedications(newMedications);
@@ -57,73 +44,103 @@ export default function HealthRoutineTracker() {
     e.preventDefault();
     
     const filteredMeals = meals.filter(m => m.trim());
-    const filteredMedications = medications.filter(m => m.name.trim());
+    const filteredMedications = medications.filter(m => m.name.trim() && m.dosage.trim() && m.time.trim());
 
     logHealthData({
-      exerciseMinutes: BigInt(exerciseMinutes || 0),
+      exerciseMinutes: BigInt(exerciseMinutes || '0'),
       meals: filteredMeals,
-      waterIntake: BigInt(waterIntake || 0),
-      sleepHours: BigInt(sleepHours || 0),
+      waterIntake: BigInt(waterIntake || '0'),
+      sleepHours: BigInt(sleepHours || '0'),
       medications: filteredMedications
     });
   };
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
-      {/* Current Data Display */}
+      {/* Current Health Data Display */}
       {healthData && (
-        <Card className="bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Activity className="w-5 h-5 text-primary" />
-              Your Current Health Data
-            </CardTitle>
-            <CardDescription>Last logged health routine</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="space-y-1">
-                <p className="text-sm text-muted-foreground flex items-center gap-1">
-                  <Activity className="w-4 h-4" />
-                  Exercise
-                </p>
-                <p className="text-2xl font-bold text-foreground">{Number(healthData.exerciseMinutes)} min</p>
+        <Card className="shadow-soft border-l-4 border-l-primary">
+          <CardHeader className="border-b bg-primary/5">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                <CheckCircle2 className="w-5 h-5 text-primary" />
               </div>
-              <div className="space-y-1">
-                <p className="text-sm text-muted-foreground flex items-center gap-1">
-                  <Droplet className="w-4 h-4" />
-                  Water
-                </p>
-                <p className="text-2xl font-bold text-foreground">{Number(healthData.waterIntake)} ml</p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-sm text-muted-foreground flex items-center gap-1">
-                  <Moon className="w-4 h-4" />
-                  Sleep
-                </p>
-                <p className="text-2xl font-bold text-foreground">{Number(healthData.sleepHours)} hrs</p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-sm text-muted-foreground flex items-center gap-1">
-                  <Utensils className="w-4 h-4" />
-                  Meals
-                </p>
-                <p className="text-2xl font-bold text-foreground">{healthData.meals.length}</p>
+              <div>
+                <CardTitle className="font-semibold">Current Health Data</CardTitle>
+                <CardDescription className="font-normal">Your latest tracked wellness metrics</CardDescription>
               </div>
             </div>
+          </CardHeader>
+          <CardContent className="pt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Activity className="w-4 h-4" />
+                  <span className="text-sm font-medium">Exercise</span>
+                </div>
+                <p className="text-2xl font-semibold text-foreground">{healthData.exerciseMinutes.toString()} minutes</p>
+              </div>
+              
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Droplet className="w-4 h-4" />
+                  <span className="text-sm font-medium">Water Intake</span>
+                </div>
+                <p className="text-2xl font-semibold text-foreground">{healthData.waterIntake.toString()} glasses</p>
+              </div>
+              
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Moon className="w-4 h-4" />
+                  <span className="text-sm font-medium">Sleep</span>
+                </div>
+                <p className="text-2xl font-semibold text-foreground">{healthData.sleepHours.toString()} hours</p>
+              </div>
+              
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Utensils className="w-4 h-4" />
+                  <span className="text-sm font-medium">Meals</span>
+                </div>
+                <p className="text-2xl font-semibold text-foreground">{healthData.meals.length} logged</p>
+              </div>
+            </div>
+
+            {healthData.meals.length > 0 && (
+              <>
+                <Separator className="my-6" />
+                <div className="space-y-3">
+                  <h4 className="font-semibold text-sm text-muted-foreground flex items-center gap-2">
+                    <Utensils className="w-4 h-4" />
+                    Meals Today
+                  </h4>
+                  <ul className="space-y-2">
+                    {healthData.meals.map((meal, index) => (
+                      <li key={index} className="text-sm text-foreground bg-muted/50 px-4 py-2.5 rounded-lg font-normal">
+                        {meal}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            )}
+
             {healthData.medications.length > 0 && (
               <>
-                <Separator className="my-4" />
-                <div className="space-y-2">
-                  <p className="text-sm font-medium text-muted-foreground flex items-center gap-1">
+                <Separator className="my-6" />
+                <div className="space-y-3">
+                  <h4 className="font-semibold text-sm text-muted-foreground flex items-center gap-2">
                     <Pill className="w-4 h-4" />
                     Medications
-                  </p>
-                  <div className="space-y-1">
-                    {healthData.medications.map((med, idx) => (
-                      <p key={idx} className="text-sm text-foreground">
-                        {med.name} - {med.dosage} at {med.time}
-                      </p>
+                  </h4>
+                  <div className="space-y-2">
+                    {healthData.medications.map((med, index) => (
+                      <div key={index} className="text-sm bg-muted/50 px-4 py-3 rounded-lg space-y-1">
+                        <p className="font-semibold text-foreground">{med.name}</p>
+                        <p className="text-muted-foreground font-normal">
+                          {med.dosage} at {med.time}
+                        </p>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -133,25 +150,24 @@ export default function HealthRoutineTracker() {
         </Card>
       )}
 
-      {error && !healthData && (
-        <Alert>
-          <AlertDescription>
-            No health data logged yet. Start tracking your wellness routine below!
-          </AlertDescription>
-        </Alert>
-      )}
-
-      {/* Log New Data Form */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Log Today's Health Routine</CardTitle>
-          <CardDescription>Track your daily wellness activities</CardDescription>
+      {/* Log New Health Data Form */}
+      <Card className="shadow-soft">
+        <CardHeader className="border-b bg-card/50">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+              <Activity className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <CardTitle className="font-semibold">Log Health Data</CardTitle>
+              <CardDescription className="font-normal">Track your daily wellness activities</CardDescription>
+            </div>
+          </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pt-6">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Exercise */}
-            <div className="space-y-2">
-              <Label htmlFor="exercise" className="flex items-center gap-2">
+            <div className="space-y-2.5">
+              <Label htmlFor="exercise" className="flex items-center gap-2 font-medium text-sm">
                 <Activity className="w-4 h-4 text-primary" />
                 Exercise (minutes)
               </Label>
@@ -163,67 +179,34 @@ export default function HealthRoutineTracker() {
                 value={exerciseMinutes}
                 onChange={(e) => setExerciseMinutes(e.target.value)}
                 disabled={isPending}
+                className="h-11 border-input focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
               />
             </div>
-
-            {/* Water Intake */}
-            <div className="space-y-2">
-              <Label htmlFor="water" className="flex items-center gap-2">
-                <Droplet className="w-4 h-4 text-primary" />
-                Water Intake (ml)
-              </Label>
-              <Input
-                id="water"
-                type="number"
-                min="0"
-                placeholder="2000"
-                value={waterIntake}
-                onChange={(e) => setWaterIntake(e.target.value)}
-                disabled={isPending}
-              />
-            </div>
-
-            {/* Sleep Hours */}
-            <div className="space-y-2">
-              <Label htmlFor="sleep" className="flex items-center gap-2">
-                <Moon className="w-4 h-4 text-primary" />
-                Sleep (hours)
-              </Label>
-              <Input
-                id="sleep"
-                type="number"
-                min="0"
-                max="24"
-                placeholder="8"
-                value={sleepHours}
-                onChange={(e) => setSleepHours(e.target.value)}
-                disabled={isPending}
-              />
-            </div>
-
-            <Separator />
 
             {/* Meals */}
             <div className="space-y-3">
-              <Label className="flex items-center gap-2">
+              <Label className="flex items-center gap-2 font-medium text-sm">
                 <Utensils className="w-4 h-4 text-primary" />
                 Meals
               </Label>
               {meals.map((meal, index) => (
                 <div key={index} className="flex gap-2">
                   <Input
-                    placeholder={`Meal ${index + 1} (e.g., Oatmeal with berries)`}
+                    type="text"
+                    placeholder="e.g., Oatmeal with berries"
                     value={meal}
-                    onChange={(e) => handleMealChange(index, e.target.value)}
+                    onChange={(e) => updateMeal(index, e.target.value)}
                     disabled={isPending}
+                    className="h-11 border-input focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
                   />
                   {meals.length > 1 && (
                     <Button
                       type="button"
                       variant="outline"
                       size="icon"
-                      onClick={() => handleRemoveMeal(index)}
+                      onClick={() => removeMeal(index)}
                       disabled={isPending}
+                      className="h-11 w-11 flex-shrink-0 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/20 transition-all"
                     >
                       <Trash2 className="w-4 h-4" />
                     </Button>
@@ -234,39 +217,78 @@ export default function HealthRoutineTracker() {
                 type="button"
                 variant="outline"
                 size="sm"
-                onClick={handleAddMeal}
+                onClick={addMeal}
                 disabled={isPending}
-                className="w-full"
+                className="w-full rounded-lg hover:bg-primary/5 hover:text-primary hover:border-primary/20 transition-all font-medium"
               >
                 <Plus className="w-4 h-4 mr-2" />
                 Add Meal
               </Button>
             </div>
 
-            <Separator />
+            {/* Water Intake */}
+            <div className="space-y-2.5">
+              <Label htmlFor="water" className="flex items-center gap-2 font-medium text-sm">
+                <Droplet className="w-4 h-4 text-primary" />
+                Water Intake (glasses)
+              </Label>
+              <Input
+                id="water"
+                type="number"
+                min="0"
+                placeholder="8"
+                value={waterIntake}
+                onChange={(e) => setWaterIntake(e.target.value)}
+                disabled={isPending}
+                className="h-11 border-input focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
+              />
+            </div>
+
+            {/* Sleep */}
+            <div className="space-y-2.5">
+              <Label htmlFor="sleep" className="flex items-center gap-2 font-medium text-sm">
+                <Moon className="w-4 h-4 text-primary" />
+                Sleep (hours)
+              </Label>
+              <Input
+                id="sleep"
+                type="number"
+                min="0"
+                max="24"
+                step="0.5"
+                placeholder="7.5"
+                value={sleepHours}
+                onChange={(e) => setSleepHours(e.target.value)}
+                disabled={isPending}
+                className="h-11 border-input focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
+              />
+            </div>
 
             {/* Medications */}
             <div className="space-y-3">
-              <Label className="flex items-center gap-2">
+              <Label className="flex items-center gap-2 font-medium text-sm">
                 <Pill className="w-4 h-4 text-primary" />
                 Medications
               </Label>
               {medications.map((med, index) => (
-                <div key={index} className="space-y-2 p-4 border rounded-lg bg-muted/30">
+                <div key={index} className="space-y-2 p-4 border border-border rounded-xl bg-muted/30">
                   <div className="flex gap-2">
                     <Input
+                      type="text"
                       placeholder="Medication name"
                       value={med.name}
-                      onChange={(e) => handleMedicationChange(index, 'name', e.target.value)}
+                      onChange={(e) => updateMedication(index, 'name', e.target.value)}
                       disabled={isPending}
+                      className="h-10 border-input focus:ring-2 focus:ring-ring transition-all"
                     />
                     {medications.length > 1 && (
                       <Button
                         type="button"
                         variant="outline"
                         size="icon"
-                        onClick={() => handleRemoveMedication(index)}
+                        onClick={() => removeMedication(index)}
                         disabled={isPending}
+                        className="h-10 w-10 flex-shrink-0 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/20 transition-all"
                       >
                         <Trash2 className="w-4 h-4" />
                       </Button>
@@ -274,16 +296,20 @@ export default function HealthRoutineTracker() {
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     <Input
-                      placeholder="Dosage (e.g., 500mg)"
+                      type="text"
+                      placeholder="Dosage (e.g., 10mg)"
                       value={med.dosage}
-                      onChange={(e) => handleMedicationChange(index, 'dosage', e.target.value)}
+                      onChange={(e) => updateMedication(index, 'dosage', e.target.value)}
                       disabled={isPending}
+                      className="h-10 border-input focus:ring-2 focus:ring-ring transition-all"
                     />
                     <Input
+                      type="text"
                       placeholder="Time (e.g., 8:00 AM)"
                       value={med.time}
-                      onChange={(e) => handleMedicationChange(index, 'time', e.target.value)}
+                      onChange={(e) => updateMedication(index, 'time', e.target.value)}
                       disabled={isPending}
+                      className="h-10 border-input focus:ring-2 focus:ring-ring transition-all"
                     />
                   </div>
                 </div>
@@ -292,23 +318,32 @@ export default function HealthRoutineTracker() {
                 type="button"
                 variant="outline"
                 size="sm"
-                onClick={handleAddMedication}
+                onClick={addMedication}
                 disabled={isPending}
-                className="w-full"
+                className="w-full rounded-lg hover:bg-primary/5 hover:text-primary hover:border-primary/20 transition-all font-medium"
               >
                 <Plus className="w-4 h-4 mr-2" />
                 Add Medication
               </Button>
             </div>
 
-            <Button type="submit" className="w-full" disabled={isPending}>
+            <Separator className="my-6" />
+
+            <Button
+              type="submit"
+              className="w-full h-12 rounded-lg shadow-soft hover:shadow-md transition-all duration-200 font-medium text-base"
+              disabled={isPending}
+            >
               {isPending ? (
                 <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Logging...
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  Logging Data...
                 </>
               ) : (
-                'Log Health Data'
+                <>
+                  <Activity className="mr-2 h-5 w-5" />
+                  Log Health Data
+                </>
               )}
             </Button>
           </form>
@@ -317,4 +352,3 @@ export default function HealthRoutineTracker() {
     </div>
   );
 }
-

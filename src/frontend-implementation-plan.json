@@ -1,169 +1,133 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Health Guardian Frontend Implementation",
+  "title": "Professional UI redesign with refined typography and layouts",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Implement Internet Identity authentication integration allowing users to securely log in and maintain their health data",
+      "id": "REQ-6",
+      "summary": "Refine the typography system to use a professional font pairing with clear hierarchy: use a modern sans-serif for headings (weight 600-700) and body text (weight 400-500), ensuring all text is easily readable with appropriate line-heights and letter-spacing",
       "acceptanceCriteria": [
-        "Users can log in using Internet Identity",
-        "User session persists across page refreshes",
-        "Health data is tied to authenticated user identity"
+        "Headings use consistent font weights (600-700) with clear size hierarchy",
+        "Body text uses readable weights (400-500) with optimal line-height for readability",
+        "Letter-spacing is adjusted for professional appearance"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/tailwind.config.js",
           "operation": "modify",
-          "description": "Add authentication state management using the authorization component. Wrap the application with authentication context and conditionally render content based on login status. Ensure user must be logged in before seeing any application data. Use the authorization component to support Internet Identity authentication. Verify the component's usage instructions before implementing."
+          "description": "Update the theme configuration to establish professional typography standards: adjust fontFamily settings to use Inter with optimized weights (600-700 for headings, 400-500 for body), configure fontSize scale with appropriate line-heights for each size, and add letterSpacing values for professional text rendering across all components."
         },
         {
-          "path": "frontend/src/components/LoginButton.tsx",
-          "operation": "create",
-          "description": "Create a login/logout button component following the authorization component's login component pattern. Handle authentication state transitions and clear query cache on logout. Use the authorization component to support role-based authentication. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/ProfileSetup.tsx",
-          "operation": "create",
-          "description": "Create a profile setup modal that prompts new users to enter their name on first login. Use getCallerUserProfile to check for existing profile and saveCallerUserProfile to save the profile. Implement proper loading state handling to prevent modal flash following the authorization component's pattern. Use the authorization component to support user profile management. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/hooks/useGetCallerUserProfile.ts",
-          "operation": "create",
-          "description": "Create a custom hook to fetch the current user's profile. Follow the authorization component's pattern for preventing profile setup modal flash, properly handling actor dependency and loading states. Use the authorization component to support profile retrieval. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/hooks/useSaveCallerUserProfile.ts",
-          "operation": "create",
-          "description": "Create a custom hook using useMutation to save the current user's profile. Handle success and error states appropriately. Use the authorization component to support profile persistence. Verify the component's usage instructions before implementing."
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add global typography base styles using @layer base to set professional font rendering defaults: configure headings (h1-h6) with consistent font-weight 600-700 and appropriate letter-spacing, set body text with font-weight 400-500 and optimal line-height (1.6-1.8), and ensure smooth font rendering with text-rendering and -webkit-font-smoothing properties."
         }
       ]
     },
     {
-      "id": "REQ-2",
-      "summary": "Create a daily health routine tracking system where users can log and manage their daily health activities",
+      "id": "REQ-7",
+      "summary": "Redesign the Layout component header and hero section with a professional aesthetic: replace casual styling with a clean, minimalist design featuring subtle shadows, refined spacing, and a more sophisticated layout structure",
       "acceptanceCriteria": [
-        "Users can add new routine entries with timestamp",
-        "Users can view their routine history",
-        "Users can edit or delete existing entries",
-        "Data persists in backend storage"
+        "Header uses professional spacing and subtle elevation effects",
+        "Hero section has a refined, business-appropriate visual treatment",
+        "Overall layout conveys trustworthiness and credibility"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/HealthRoutineTracker.tsx",
-          "operation": "create",
-          "description": "Create a comprehensive health routine tracking component with form inputs for exercise minutes, meals, water intake, sleep hours, and medications. Include fields for medication name, dosage, and time. Display a list of logged entries with edit and delete functionality. Ensure authenticated users only can access this feature."
-        },
-        {
-          "path": "frontend/src/hooks/useLogHealthData.ts",
-          "operation": "create",
-          "description": "Create a custom hook using useMutation to call the logHealthData backend function. Handle the HealthData type including meals array, waterIntake bigint, medications array with Medication type, sleepHours bigint, and exerciseMinutes bigint. Invalidate relevant queries on success."
-        },
-        {
-          "path": "frontend/src/hooks/useGetHealthData.ts",
-          "operation": "create",
-          "description": "Create a custom hook using useQuery to fetch health data for the authenticated user via getHealthData backend function. Return the HealthData type with proper loading and error states."
-        },
-        {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/components/Layout.tsx",
           "operation": "modify",
-          "description": "Wire the HealthRoutineTracker component into the main application layout. Add navigation or routing to make the health routine tracker accessible from the main interface."
+          "description": "Redesign the header with professional styling: apply subtle shadow (shadow-sm or shadow-md) for elevation, increase padding for generous spacing, use refined typography with professional font weights from the updated typography system. Redesign the hero section with clean, minimalist aesthetic: replace the existing hero image at frontend/public/assets/generated/hero-health.dim_1200x600.png with refined spacing and subtle visual treatments, use professional color combinations from the refined palette, add subtle borders or background treatments for sophistication, and ensure the layout structure conveys trust and credibility through balanced composition."
         }
       ]
     },
     {
-      "id": "REQ-3",
-      "summary": "Build an AI chat interface for health guidance where users can ask health-related questions and receive text-based advice",
+      "id": "REQ-8",
+      "summary": "Update the EmergencyContacts component to use a more professional presentation: replace the prominent alert styling with a clean card-based layout, use subtle borders and shadows, and refine the contact list to look more like a professional directory",
       "acceptanceCriteria": [
-        "Chat interface displays conversation history",
-        "Users can send text messages and receive AI responses",
-        "AI provides general health guidance based on user queries",
-        "Chat history is saved per user"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/HealthChatInterface.tsx",
-          "operation": "create",
-          "description": "Create a chat interface component with message history display, text input field, and send button. Display user messages and AI responses in a conversational format. Integrate the generated chat icon image from frontend/public/assets/generated/chat-icon.dim_128x128.png as a visual element in the chat interface. Include scrollable message container and proper message alignment (user messages right-aligned, AI responses left-aligned). Ensure only authenticated users can access the chat."
-        },
-        {
-          "path": "frontend/src/hooks/useSendChatMessage.ts",
-          "operation": "create",
-          "description": "Create a custom hook using useMutation to send chat messages and receive AI responses. Implement HTTP calls to a chat backend capability that processes health-related queries. Handle message state and conversation history updates."
-        },
-        {
-          "path": "frontend/src/hooks/useGetChatHistory.ts",
-          "operation": "create",
-          "description": "Create a custom hook using useQuery to fetch the authenticated user's chat history. Return an array of chat messages with proper typing for user and AI messages."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Wire the HealthChatInterface component into the main application layout. Add navigation or routing to make the chat interface accessible from the main menu."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Implement an emergency contacts management feature where users can store and display emergency contact information",
-      "acceptanceCriteria": [
-        "Users can add multiple emergency contacts",
-        "Users can view all saved emergency contacts",
-        "Users can edit or remove contacts",
-        "Emergency contacts are prominently displayed and easily accessible"
+        "Emergency contacts displayed in professional card format",
+        "Alert styling replaced with subtle, business-appropriate visual cues",
+        "Contact information presented in a clear, directory-style format"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/EmergencyContacts.tsx",
-          "operation": "create",
-          "description": "Create an emergency contacts management component with a form to add new contacts (name, relationship, phone number) and a list displaying all saved contacts. Include edit and delete functionality for each contact. Display the generated emergency icon image from frontend/public/assets/generated/emergency-icon.dim_128x128.png prominently in the section header. Make this section visually prominent with clear styling to indicate its importance. Ensure only authenticated users can manage contacts."
-        },
-        {
-          "path": "frontend/src/hooks/useAddEmergencyContact.ts",
-          "operation": "create",
-          "description": "Create a custom hook using useMutation to call the addEmergencyContact backend function. Handle the EmergencyContact type with name, relationship, and phoneNumber fields. Invalidate emergency contacts query on success."
-        },
-        {
-          "path": "frontend/src/hooks/useGetEmergencyContacts.ts",
-          "operation": "create",
-          "description": "Create a custom hook using useQuery to fetch emergency contacts for the authenticated user via getEmergencyContacts backend function. Return an array of EmergencyContact objects with proper loading and error states."
-        },
-        {
-          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Wire the EmergencyContacts component into the main application layout. Ensure it is prominently placed and easily accessible, potentially in a dedicated section or always-visible sidebar."
+          "description": "Replace the prominent alert styling with a professional card-based layout: use clean card containers with subtle borders (border border-border) and soft shadows (shadow-sm), organize contacts in a directory-style format with clear visual hierarchy, apply professional spacing between contact entries, use refined typography from the updated system for labels and values, and replace the emergency icon at frontend/public/assets/generated/emergency-icon.dim_128x128.png with subtle, business-appropriate visual treatments instead of alert-style presentation."
         }
       ]
     },
     {
-      "id": "REQ-5",
-      "summary": "Design a clean, health-focused user interface with a calming color palette and clear typography that promotes wellness and accessibility",
+      "id": "REQ-9",
+      "summary": "Refine the HealthRoutineTracker component with professional form styling: use clean input fields with subtle borders, organized sections with clear labels, and a polished submission button with appropriate hover states",
       "acceptanceCriteria": [
-        "Interface uses a cohesive health-themed color scheme",
-        "Navigation is intuitive with clear section labels",
-        "Layout is responsive and accessible",
-        "Visual design promotes a sense of calm and trust"
+        "Form inputs have professional styling with clear focus states",
+        "Section organization uses clear visual hierarchy",
+        "Submit button has polished appearance with smooth interactions"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/HealthRoutineTracker.tsx",
+          "operation": "modify",
+          "description": "Apply professional form styling throughout: update input fields with clean borders (border border-input), refined padding, and clear focus states (focus:ring-2 focus:ring-ring), organize form sections with clear visual hierarchy using professional typography weights and spacing, refine labels to use professional font weights and letter-spacing from the updated typography system, update the submit button with polished appearance (rounded corners, subtle elevation, professional colors), and implement smooth hover and active states with appropriate transitions."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Update the HealthChatInterface component with a professional chat design: use a clean message bubble design, refined color contrast, organized layout with clear sender distinction, and professional spacing between messages",
+      "acceptanceCriteria": [
+        "Chat messages use professional bubble design with appropriate padding",
+        "User and AI messages are clearly distinguished with professional styling",
+        "Message spacing and layout convey a polished, business-appropriate interface"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/HealthChatInterface.tsx",
+          "operation": "modify",
+          "description": "Redesign the chat interface with professional message bubbles: apply clean bubble design with rounded corners (rounded-2xl or rounded-xl), generous padding for readability, and subtle shadows for depth, distinguish user and AI messages with refined color treatments from the professional palette (maintaining strong contrast), use professional typography for message content with appropriate line-height, add professional spacing between messages for clear conversation flow, replace the chat icon at frontend/public/assets/generated/chat-icon.dim_128x128.png with refined presentation, and ensure the overall layout conveys a polished, business-appropriate aesthetic."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Refine the color palette to maintain the health-focused theme while adding professional polish: adjust the existing OKLCH colors to use more sophisticated tones, reduce saturation slightly for a mature look, and ensure strong contrast ratios for accessibility",
+      "acceptanceCriteria": [
+        "Color palette maintains health-focused calming effect while looking more professional",
+        "All text maintains WCAG AA contrast ratios or better",
+        "Color scheme conveys trustworthiness and credibility"
       ],
       "file_operations": [
         {
           "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Implement a health-focused design system with a calming color palette using soft greens, whites, and light blues. Define CSS custom properties for primary, secondary, and accent colors that promote wellness. Set clear, readable typography with appropriate font sizes and line heights for accessibility. Include focus states and contrast ratios that meet WCAG guidelines."
+          "description": "Refine the existing OKLCH color variables to add professional polish while maintaining the health-focused calming theme: reduce saturation values slightly (by 5-10%) for more sophisticated tones that convey maturity and trustworthiness, adjust lightness values to ensure WCAG AA contrast ratios or better between text and backgrounds, maintain the calming teal/green/blue foundation but make colors more subdued and business-appropriate, and ensure the refined palette works harmoniously across both light and dark modes for a credible, professional appearance."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Update button and interactive element styling across all components to use consistent professional design: rounded corners with subtle radius, refined hover and active states, clear focus indicators, and appropriate elevation changes",
+      "acceptanceCriteria": [
+        "All buttons use consistent professional styling",
+        "Hover states provide clear visual feedback",
+        "Focus indicators meet accessibility standards",
+        "Interactive elements convey quality and polish"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/LoginButton.tsx",
+          "operation": "modify",
+          "description": "Update button styling to use consistent professional design patterns: apply subtle rounded corners (rounded-lg or rounded-xl), implement refined hover states with smooth transitions and subtle elevation changes (shadow or brightness adjustments), add clear focus indicators that meet WCAG standards (focus:ring-2 focus:ring-offset-2), use professional color combinations from the refined palette, and ensure the button conveys quality through polished visual treatment."
         },
         {
-          "path": "frontend/tailwind.config.js",
+          "path": "frontend/src/components/ProfileSetup.tsx",
           "operation": "modify",
-          "description": "Extend the Tailwind configuration with a custom health-themed color palette including soft green shades, calming blues, and neutral whites. Add custom spacing and typography scale that supports the wellness-focused design. Configure responsive breakpoints for mobile-first accessibility."
+          "description": "Update all interactive elements (buttons, inputs) to match the professional design system: apply consistent rounded corners, refined hover and active states with smooth transitions, clear focus indicators for accessibility, and ensure all interactive elements use the professional typography and color treatments established in the refined design system."
         },
         {
           "path": "frontend/src/components/Layout.tsx",
-          "operation": "create",
-          "description": "Create a main layout component that provides consistent structure across the application. Include a navigation header with clear section labels (Health Tracker, Chat Assistant, Emergency Contacts), the generated hero banner image from frontend/public/assets/generated/hero-health.dim_1200x600.png in an appropriate hero section, and a content area. Ensure responsive design that adapts to mobile, tablet, and desktop viewports. Use the health-themed color palette throughout."
-        },
-        {
-          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Wrap the application content with the Layout component to provide consistent navigation and visual structure. Ensure all feature components (HealthRoutineTracker, HealthChatInterface, EmergencyContacts) are rendered within the layout with proper routing or tab-based navigation."
+          "description": "Update tab buttons and any other interactive elements in the Layout to use consistent professional styling: apply the same rounded corners, hover states, focus indicators, and elevation changes established in the design system, ensuring all interactive elements throughout the layout convey quality and polish through cohesive visual treatment."
         }
       ]
     }

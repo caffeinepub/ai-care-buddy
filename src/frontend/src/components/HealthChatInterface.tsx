@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { MessageSquare, Send, Bot, User, Loader2 } from 'lucide-react';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 
 interface Message {
   id: string;
@@ -94,46 +93,46 @@ export default function HealthChatInterface() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <Card className="h-[600px] flex flex-col">
-        <CardHeader className="border-b">
+      <Card className="h-[650px] flex flex-col shadow-soft">
+        <CardHeader className="border-b bg-card/50">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
               <MessageSquare className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <CardTitle>AI Health Assistant</CardTitle>
-              <CardDescription>Get general health guidance and wellness tips</CardDescription>
+              <CardTitle className="font-semibold">AI Health Assistant</CardTitle>
+              <CardDescription className="font-normal">Get general health guidance and wellness tips</CardDescription>
             </div>
           </div>
         </CardHeader>
         
         <CardContent className="flex-1 flex flex-col p-0">
-          <ScrollArea className="flex-1 p-4" ref={scrollRef}>
-            <div className="space-y-4">
+          <ScrollArea className="flex-1 p-6" ref={scrollRef}>
+            <div className="space-y-5">
               {messages.map((message) => (
                 <div
                   key={message.id}
                   className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   {message.role === 'assistant' && (
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 shadow-xs">
                       <Bot className="w-4 h-4 text-primary" />
                     </div>
                   )}
                   <div
-                    className={`max-w-[80%] rounded-lg p-3 ${
+                    className={`max-w-[75%] rounded-2xl px-5 py-3.5 shadow-soft ${
                       message.role === 'user'
                         ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted text-foreground'
+                        : 'bg-muted/80 text-foreground border border-border'
                     }`}
                   >
-                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                    <p className="text-xs opacity-70 mt-1">
+                    <p className="text-sm whitespace-pre-wrap leading-relaxed font-normal">{message.content}</p>
+                    <p className={`text-xs mt-2 ${message.role === 'user' ? 'opacity-80' : 'opacity-60'}`}>
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>
                   </div>
                   {message.role === 'user' && (
-                    <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+                    <div className="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center flex-shrink-0 shadow-xs">
                       <User className="w-4 h-4 text-secondary-foreground" />
                     </div>
                   )}
@@ -141,10 +140,10 @@ export default function HealthChatInterface() {
               ))}
               {isLoading && (
                 <div className="flex gap-3 justify-start">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 shadow-xs">
                     <Bot className="w-4 h-4 text-primary" />
                   </div>
-                  <div className="bg-muted rounded-lg p-3">
+                  <div className="bg-muted/80 rounded-2xl px-5 py-3.5 border border-border shadow-soft">
                     <Loader2 className="w-4 h-4 animate-spin text-muted-foreground" />
                   </div>
                 </div>
@@ -152,26 +151,26 @@ export default function HealthChatInterface() {
             </div>
           </ScrollArea>
 
-          <div className="border-t p-4">
-            <Alert className="mb-3">
-              <AlertDescription className="text-xs">
+          <div className="border-t p-5 bg-card/50">
+            <div className="mb-3 px-4 py-2.5 bg-muted/50 rounded-lg border border-border">
+              <p className="text-xs text-muted-foreground font-normal leading-relaxed">
                 This AI assistant provides general health information only. Always consult healthcare professionals for medical advice.
-              </AlertDescription>
-            </Alert>
-            <div className="flex gap-2">
+              </p>
+            </div>
+            <div className="flex gap-3">
               <Textarea
                 placeholder="Ask a health question... (Press Enter to send, Shift+Enter for new line)"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
                 disabled={isLoading}
-                className="min-h-[60px] max-h-[120px]"
+                className="min-h-[70px] max-h-[140px] resize-none border-input focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
               />
               <Button
                 onClick={handleSend}
                 disabled={!input.trim() || isLoading}
                 size="icon"
-                className="h-[60px] w-[60px]"
+                className="h-[70px] w-[70px] rounded-xl shadow-soft hover:shadow-md transition-all duration-200"
               >
                 <Send className="w-5 h-5" />
               </Button>
@@ -182,4 +181,3 @@ export default function HealthChatInterface() {
     </div>
   );
 }
-
