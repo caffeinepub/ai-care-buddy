@@ -1,0 +1,18 @@
+{
+  "frontend/src/index.css": "Global styles with a calming health-focused OKLCH color palette featuring soft teals, greens, and blues for both light and dark modes, promoting wellness and accessibility.",
+  "frontend/tailwind.config.js": "Extended Tailwind configuration with custom health-themed colors, Inter font family, and additional shadow utilities for a cohesive wellness-focused design system.",
+  "frontend/src/App.tsx": "Main application component managing authentication flow, profile setup, and rendering the Layout component for authenticated users with proper loading states and type-safe userProfile handling.",
+  "frontend/src/components/LoginButton.tsx": "Reusable login/logout button component with Internet Identity integration, loading states, and query cache clearing on logout.",
+  "frontend/src/components/ProfileSetup.tsx": "Modal component for first-time user profile setup, prompting users to enter their name with proper form validation and loading states.",
+  "frontend/src/components/Layout.tsx": "Main layout component with header, tabbed navigation (Health Tracker, AI Assistant, Emergency), hero section, and footer with attribution.",
+  "frontend/src/components/HealthRoutineTracker.tsx": "Comprehensive health tracking interface for logging exercise, meals, water intake, sleep, and medications with current data display and form inputs.",
+  "frontend/src/components/HealthChatInterface.tsx": "AI chat interface with message history, simulated health guidance responses, and conversational UI for user health questions.",
+  "frontend/src/components/EmergencyContacts.tsx": "Emergency contacts management component with prominent alert styling, contact list display, and form for adding new emergency contacts.",
+  "frontend/src/hooks/useGetCallerUserProfile.ts": "React Query hook for fetching the current user's profile with proper actor dependency handling to prevent modal flash.",
+  "frontend/src/hooks/useSaveCallerUserProfile.ts": "React Query mutation hook for saving user profile with automatic query invalidation on success.",
+  "frontend/src/hooks/useLogHealthData.ts": "React Query mutation hook for logging health data with toast notifications and query invalidation.",
+  "frontend/src/hooks/useGetHealthData.ts": "React Query hook for fetching user health data by principal with proper error handling.",
+  "frontend/src/hooks/useAddEmergencyContact.ts": "React Query mutation hook for adding emergency contacts with toast notifications and query invalidation.",
+  "frontend/src/hooks/useGetEmergencyContacts.ts": "React Query hook for fetching emergency contacts by principal with proper error handling.",
+  "frontend/src/main.tsx": "Application entry point with QueryClient, InternetIdentityProvider, ThemeProvider, and Toaster setup for the entire app."
+}

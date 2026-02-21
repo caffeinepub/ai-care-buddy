@@ -1,0 +1,114 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-implement-internet-identity-authentication-integration-allowing-users-to-securely-log-in-and-maintain-their-health-data",
+      "featureTitle": "Implement Internet Identity authentication integration allowing users to securely log in and maintain their health data",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/LoginButton.tsx",
+        "frontend/src/components/ProfileSetup.tsx",
+        "frontend/src/hooks/useGetCallerUserProfile.ts",
+        "frontend/src/hooks/useSaveCallerUserProfile.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-daily-health-routine-tracking-system-where-users-can-log-and-manage-their-daily-health-activities-exercise-meals-water-intake-sleep-medications",
+      "featureTitle": "Create a daily health routine tracking system where users can log and manage their daily health activities (exercise, meals, water intake, sleep, medications)",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/HealthRoutineTracker.tsx",
+        "frontend/src/hooks/useGetHealthData.ts",
+        "frontend/src/hooks/useLogHealthData.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-an-ai-chat-interface-for-health-guidance-where-users-can-ask-health-related-questions-and-receive-text-based-advice",
+      "featureTitle": "Build an AI chat interface for health guidance where users can ask health-related questions and receive text-based advice",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/HealthChatInterface.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-an-emergency-contacts-management-feature-where-users-can-store-and-display-emergency-contact-information-name-relationship-phone-number",
+      "featureTitle": "Implement an emergency contacts management feature where users can store and display emergency contact information (name, relationship, phone number)",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/EmergencyContacts.tsx",
+        "frontend/src/hooks/useAddEmergencyContact.ts",
+        "frontend/src/hooks/useGetEmergencyContacts.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-design-a-clean-health-focused-user-interface-with-a-calming-color-palette-soft-greens-whites-light-blues-and-clear-typography-that-promotes-wellness-and-accessibility",
+      "featureTitle": "Design a clean, health-focused user interface with a calming color palette (soft greens, whites, light blues) and clear typography that promotes wellness and accessibility",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/Layout.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

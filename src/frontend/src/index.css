@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.75rem;
+        /* Soft, calming health-focused palette */
+        --background: 0.98 0.01 150;
+        --foreground: 0.25 0.02 180;
+        --card: 1 0 0;
+        --card-foreground: 0.25 0.02 180;
+        --popover: 1 0 0;
+        --popover-foreground: 0.25 0.02 180;
+        /* Soft teal/green primary for health/wellness */
+        --primary: 0.65 0.12 180;
+        --primary-foreground: 0.99 0 0;
+        /* Light mint secondary */
+        --secondary: 0.95 0.03 160;
+        --secondary-foreground: 0.35 0.04 170;
+        --muted: 0.96 0.01 150;
+        --muted-foreground: 0.55 0.02 180;
+        /* Soft blue accent */
+        --accent: 0.92 0.04 220;
+        --accent-foreground: 0.35 0.05 200;
+        /* Soft coral for destructive/emergency */
+        --destructive: 0.62 0.18 25;
+        --destructive-foreground: 0.99 0 0;
+        --border: 0.90 0.02 160;
+        --input: 0.92 0.02 170;
+        --ring: 0.65 0.12 180;
+        --chart-1: 0.65 0.12 180;
+        --chart-2: 0.70 0.10 220;
+        --chart-3: 0.75 0.08 140;
+        --chart-4: 0.68 0.14 200;
+        --chart-5: 0.72 0.10 160;
+    }
+
+    .dark {
+        --background: 0.15 0.02 200;
+        --foreground: 0.95 0.01 160;
+        --card: 0.20 0.02 190;
+        --card-foreground: 0.95 0.01 160;
+        --popover: 0.18 0.02 195;
+        --popover-foreground: 0.95 0.01 160;
+        --primary: 0.70 0.14 180;
+        --primary-foreground: 0.15 0.02 200;
+        --secondary: 0.25 0.03 180;
+        --secondary-foreground: 0.90 0.02 160;
+        --muted: 0.22 0.02 190;
+        --muted-foreground: 0.65 0.02 180;
+        --accent: 0.30 0.04 200;
+        --accent-foreground: 0.90 0.02 170;
+        --destructive: 0.55 0.20 25;
+        --destructive-foreground: 0.95 0.01 160;
+        --border: 0.30 0.03 190;
+        --input: 0.28 0.03 185;
+        --ring: 0.70 0.14 180;
+        --chart-1: 0.70 0.14 180;
+        --chart-2: 0.65 0.12 220;
+        --chart-3: 0.75 0.10 140;
+        --chart-4: 0.68 0.16 200;
+        --chart-5: 0.72 0.12 160;
+    }
+
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    }
+}
+

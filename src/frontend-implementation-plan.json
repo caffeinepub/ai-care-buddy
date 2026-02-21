@@ -1,0 +1,171 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Health Guardian Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Implement Internet Identity authentication integration allowing users to securely log in and maintain their health data",
+      "acceptanceCriteria": [
+        "Users can log in using Internet Identity",
+        "User session persists across page refreshes",
+        "Health data is tied to authenticated user identity"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add authentication state management using the authorization component. Wrap the application with authentication context and conditionally render content based on login status. Ensure user must be logged in before seeing any application data. Use the authorization component to support Internet Identity authentication. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/LoginButton.tsx",
+          "operation": "create",
+          "description": "Create a login/logout button component following the authorization component's login component pattern. Handle authentication state transitions and clear query cache on logout. Use the authorization component to support role-based authentication. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ProfileSetup.tsx",
+          "operation": "create",
+          "description": "Create a profile setup modal that prompts new users to enter their name on first login. Use getCallerUserProfile to check for existing profile and saveCallerUserProfile to save the profile. Implement proper loading state handling to prevent modal flash following the authorization component's pattern. Use the authorization component to support user profile management. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useGetCallerUserProfile.ts",
+          "operation": "create",
+          "description": "Create a custom hook to fetch the current user's profile. Follow the authorization component's pattern for preventing profile setup modal flash, properly handling actor dependency and loading states. Use the authorization component to support profile retrieval. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useSaveCallerUserProfile.ts",
+          "operation": "create",
+          "description": "Create a custom hook using useMutation to save the current user's profile. Handle success and error states appropriately. Use the authorization component to support profile persistence. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Create a daily health routine tracking system where users can log and manage their daily health activities",
+      "acceptanceCriteria": [
+        "Users can add new routine entries with timestamp",
+        "Users can view their routine history",
+        "Users can edit or delete existing entries",
+        "Data persists in backend storage"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/HealthRoutineTracker.tsx",
+          "operation": "create",
+          "description": "Create a comprehensive health routine tracking component with form inputs for exercise minutes, meals, water intake, sleep hours, and medications. Include fields for medication name, dosage, and time. Display a list of logged entries with edit and delete functionality. Ensure authenticated users only can access this feature."
+        },
+        {
+          "path": "frontend/src/hooks/useLogHealthData.ts",
+          "operation": "create",
+          "description": "Create a custom hook using useMutation to call the logHealthData backend function. Handle the HealthData type including meals array, waterIntake bigint, medications array with Medication type, sleepHours bigint, and exerciseMinutes bigint. Invalidate relevant queries on success."
+        },
+        {
+          "path": "frontend/src/hooks/useGetHealthData.ts",
+          "operation": "create",
+          "description": "Create a custom hook using useQuery to fetch health data for the authenticated user via getHealthData backend function. Return the HealthData type with proper loading and error states."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the HealthRoutineTracker component into the main application layout. Add navigation or routing to make the health routine tracker accessible from the main interface."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build an AI chat interface for health guidance where users can ask health-related questions and receive text-based advice",
+      "acceptanceCriteria": [
+        "Chat interface displays conversation history",
+        "Users can send text messages and receive AI responses",
+        "AI provides general health guidance based on user queries",
+        "Chat history is saved per user"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/HealthChatInterface.tsx",
+          "operation": "create",
+          "description": "Create a chat interface component with message history display, text input field, and send button. Display user messages and AI responses in a conversational format. Integrate the generated chat icon image from frontend/public/assets/generated/chat-icon.dim_128x128.png as a visual element in the chat interface. Include scrollable message container and proper message alignment (user messages right-aligned, AI responses left-aligned). Ensure only authenticated users can access the chat."
+        },
+        {
+          "path": "frontend/src/hooks/useSendChatMessage.ts",
+          "operation": "create",
+          "description": "Create a custom hook using useMutation to send chat messages and receive AI responses. Implement HTTP calls to a chat backend capability that processes health-related queries. Handle message state and conversation history updates."
+        },
+        {
+          "path": "frontend/src/hooks/useGetChatHistory.ts",
+          "operation": "create",
+          "description": "Create a custom hook using useQuery to fetch the authenticated user's chat history. Return an array of chat messages with proper typing for user and AI messages."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the HealthChatInterface component into the main application layout. Add navigation or routing to make the chat interface accessible from the main menu."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Implement an emergency contacts management feature where users can store and display emergency contact information",
+      "acceptanceCriteria": [
+        "Users can add multiple emergency contacts",
+        "Users can view all saved emergency contacts",
+        "Users can edit or remove contacts",
+        "Emergency contacts are prominently displayed and easily accessible"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/EmergencyContacts.tsx",
+          "operation": "create",
+          "description": "Create an emergency contacts management component with a form to add new contacts (name, relationship, phone number) and a list displaying all saved contacts. Include edit and delete functionality for each contact. Display the generated emergency icon image from frontend/public/assets/generated/emergency-icon.dim_128x128.png prominently in the section header. Make this section visually prominent with clear styling to indicate its importance. Ensure only authenticated users can manage contacts."
+        },
+        {
+          "path": "frontend/src/hooks/useAddEmergencyContact.ts",
+          "operation": "create",
+          "description": "Create a custom hook using useMutation to call the addEmergencyContact backend function. Handle the EmergencyContact type with name, relationship, and phoneNumber fields. Invalidate emergency contacts query on success."
+        },
+        {
+          "path": "frontend/src/hooks/useGetEmergencyContacts.ts",
+          "operation": "create",
+          "description": "Create a custom hook using useQuery to fetch emergency contacts for the authenticated user via getEmergencyContacts backend function. Return an array of EmergencyContact objects with proper loading and error states."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the EmergencyContacts component into the main application layout. Ensure it is prominently placed and easily accessible, potentially in a dedicated section or always-visible sidebar."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Design a clean, health-focused user interface with a calming color palette and clear typography that promotes wellness and accessibility",
+      "acceptanceCriteria": [
+        "Interface uses a cohesive health-themed color scheme",
+        "Navigation is intuitive with clear section labels",
+        "Layout is responsive and accessible",
+        "Visual design promotes a sense of calm and trust"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Implement a health-focused design system with a calming color palette using soft greens, whites, and light blues. Define CSS custom properties for primary, secondary, and accent colors that promote wellness. Set clear, readable typography with appropriate font sizes and line heights for accessibility. Include focus states and contrast ratios that meet WCAG guidelines."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend the Tailwind configuration with a custom health-themed color palette including soft green shades, calming blues, and neutral whites. Add custom spacing and typography scale that supports the wellness-focused design. Configure responsive breakpoints for mobile-first accessibility."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "create",
+          "description": "Create a main layout component that provides consistent structure across the application. Include a navigation header with clear section labels (Health Tracker, Chat Assistant, Emergency Contacts), the generated hero banner image from frontend/public/assets/generated/hero-health.dim_1200x600.png in an appropriate hero section, and a content area. Ensure responsive design that adapts to mobile, tablet, and desktop viewports. Use the health-themed color palette throughout."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap the application content with the Layout component to provide consistent navigation and visual structure. Ensure all feature components (HealthRoutineTracker, HealthChatInterface, EmergencyContacts) are rendered within the layout with proper routing or tab-based navigation."
+        }
+      ]
+    }
+  ]
+}

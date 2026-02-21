@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "AI health assistant web app with health tracking, daily routine management, emergency contact display, and AI chat assistance for health guidance",
+  "architectural_notes": [
+    "React web app architecture",
+    "Internet Identity for authentication",
+    "Text-based AI chat interface (no voice recognition)",
+    "No external API integrations for emergency services",
+    "No email/SMS capabilities",
+    "No GPS or location services"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Health and wellness hero banner with calming medical theme (hero-health.dim_1200x600.png)\n- Medical assistance icon for chat feature (chat-icon.dim_128x128.png)\n- Emergency contact icon in red cross style (emergency-icon.dim_128x128.png)",
+  "existing_features": [
+    {
+      "id": "feature-implement-internet-identity-authentication-integration-allowing-users-to-securely-log-in-and-maintain-their-health-data",
+      "title": "Implement Internet Identity authentication integration allowing users to securely log in and maintain their health data",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-daily-health-routine-tracking-system-where-users-can-log-and-manage-their-daily-health-activities-exercise-meals-water-intake-sleep-medications",
+      "title": "Create a daily health routine tracking system where users can log and manage their daily health activities (exercise, meals, water intake, sleep, medications)",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-an-ai-chat-interface-for-health-guidance-where-users-can-ask-health-related-questions-and-receive-text-based-advice",
+      "title": "Build an AI chat interface for health guidance where users can ask health-related questions and receive text-based advice",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-emergency-contacts-management-feature-where-users-can-store-and-display-emergency-contact-information-name-relationship-phone-number",
+      "title": "Implement an emergency contacts management feature where users can store and display emergency contact information (name, relationship, phone number)",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-a-clean-health-focused-user-interface-with-a-calming-color-palette-soft-greens-whites-light-blues-and-clear-typography-that-promotes-wellness-and-accessibility",
+      "title": "Design a clean, health-focused user interface with a calming color palette (soft greens, whites, light blues) and clear typography that promotes wellness and accessibility",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Health routine tracking and management",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "AI chat assistance for health guidance",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Emergency contact display",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Internet Identity login integration",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Health Guardian",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
